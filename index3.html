@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>for Tess 💖</title>
+  <!-- fonts & icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Quicksand:wght@300;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(145deg, #ffdee9, #ffd0dd);
+      font-family: 'Quicksand', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      transition: background 1s ease;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* the initial "CLICK ME" button – big, bold, beautiful */
+    .click-reveal {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(255, 240, 245, 0.95);
+      backdrop-filter: blur(12px);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      cursor: pointer;
+      transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), visibility 1.2s;
+      box-shadow: inset 0 0 60px rgba(255, 100, 150, 0.3);
+    }
+
+    .click-reveal.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .click-text {
+      font-size: 5rem;
+      font-family: 'Dancing Script', cursive;
+      color: #b82c5c;
+      text-shadow: 5px 5px 0 #ffb0c3, 8px 8px 0 rgba(255,255,255,0.7);
+      animation: pulseClick 1.8s infinite;
+      margin-bottom: 1rem;
+    }
+
+    @keyframes pulseClick {
+      0% { transform: scale(1); text-shadow: 5px 5px 0 #ffb0c3, 8px 8px 0 rgba(255,255,255,0.7); }
+      50% { transform: scale(1.08); text-shadow: 8px 8px 0 #ff9eb6, 12px 12px 0 rgba(255,255,255,0.9); }
+      100% { transform: scale(1); text-shadow: 5px 5px 0 #ffb0c3, 8px 8px 0 rgba(255,255,255,0.7); }
+    }
+
+    .click-sub {
+      font-size: 1.8rem;
+      color: #a53860;
+      background: rgba(255,255,255,0.6);
+      padding: 0.5rem 2rem;
+      border-radius: 50px;
+      border: 2px solid white;
+      box-shadow: 0 10px 20px #ffb0c3;
+    }
+
+    /* main content – hidden until click, then fade in */
+    .valentine-content {
+      max-width: 860px;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-radius: 3rem 3rem 2rem 2rem;
+      box-shadow: 0 25px 45px rgba(200, 70, 120, 0.3), 0 0 0 2px rgba(255,255,255,0.8) inset;
+      padding: 2rem 2rem 1.8rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      opacity: 0;
+      transform: scale(0.96);
+      transition: opacity 1s ease, transform 1s ease;
+      pointer-events: none;
+    }
+
+    .valentine-content.revealed {
+      opacity: 1;
+      transform: scale(1);
+      pointer-events: all;
+    }
+
+    /* photo frame */
+    .photo-frame {
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      padding: 8px;
+      background: linear-gradient(45deg, #ff8aa7, #ff4d7a, #ffb1c5);
+      background-size: 200% 200%;
+      animation: gradientSpin 6s infinite alternate, levitate 5s infinite ease-in-out;
+      box-shadow: 0 20px 30px rgba(255, 80, 140, 0.4);
+      margin: 0 0 1.5rem 0;
+    }
+
+    @keyframes gradientSpin {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
+    }
+
+    @keyframes levitate {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+      100% { transform: translateY(0); }
+    }
+
+    .photo-inner {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 4px solid white;
+      box-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
+      background: #ffe6f0;
+    }
+
+    .photo-inner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+      animation: subtleZoom 14s infinite alternate;
+    }
+
+    .photo-inner img:hover {
+      transform: scale(1.05) rotate(1deg);
+    }
+
+    @keyframes subtleZoom {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.02); }
+    }
+
+    /* titles */
+    h1 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 4rem;
+      color: #b02c59;
+      text-shadow: 3px 3px 0 #ffb7c9, 5px 5px 0 rgba(255,255,240,0.8);
+      margin-bottom: 0.3rem;
+      text-align: center;
+    }
+
+    .valentine-greeting {
+      font-size: 2.2rem;
+      color: #b3406a;
+      background: rgba(255, 240, 245, 0.7);
+      padding: 0.3rem 2rem;
+      border-radius: 50px;
+      display: inline-block;
+      margin-bottom: 1.2rem;
+      border: 2px solid white;
+      font-weight: 500;
+    }
+
+    /* the main letter – honest, loving, acknowledging fights */
+    .heart-letter {
+      background: rgba(255, 240, 250, 0.8);
+      backdrop-filter: blur(4px);
+      border-radius: 40px;
+      padding: 2rem 2.2rem;
+      margin: 0.5rem 0 1.5rem 0;
+      border: 2px solid white;
+      box-shadow: 0 15px 30px #ffb6c1;
+      width: 100%;
+    }
+
+    .heart-letter p {
+      font-size: 1.5rem;
+      line-height: 1.6;
+      color: #912b52;
+      font-weight: 500;
+      text-align: left;
+      font-family: 'Quicksand', sans-serif;
+    }
+
+    .heart-letter i {
+      color: #ff4d6d;
+      margin: 0 5px;
+    }
+
+    .heart-letter .signature {
+      font-family: 'Dancing Script', cursive;
+      font-size: 2.4rem;
+      text-align: right;
+      margin-top: 1.5rem;
+      color: #a53860;
+    }
+
+    /* simple button to send the yes (always yes) */
+    .button-group {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin: 0.8rem 0 0.5rem;
+    }
+
+    .btn {
+      border: none;
+      background: white;
+      padding: 1rem 3rem;
+      font-size: 1.8rem;
+      font-weight: 600;
+      border-radius: 50px;
+      color: #b3406a;
+      box-shadow: 0 12px 22px rgba(200, 60, 120, 0.3);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      border: 2px solid transparent;
+    }
+
+    .btn:hover {
+      transform: scale(1.06) translateY(-4px);
+      box-shadow: 0 20px 28px #ff80a5;
+      border-color: #ffb0c3;
+      background: #fff0f7;
+    }
+
+    .btn-yes {
+      background: #ffb3c6;
+      color: #9e2b54;
+    }
+
+    .hidden-message {
+      margin: 1.5rem 0 0.2rem;
+      font-size: 1.8rem;
+      color: #ac3762;
+      background: rgba(255, 240, 250, 0.95);
+      padding: 1.2rem 2rem;
+      border-radius: 50px;
+      border: 3px dashed #ff98b9;
+      font-weight: 600;
+      transition: opacity 0.5s;
+      opacity: 0;
+      pointer-events: none;
+      text-align: center;
+    }
+
+    .hidden-message.show {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .footer-note {
+      margin-top: 1rem;
+      font-size: 1.1rem;
+      color: #b35d7c;
+      text-align: center;
+    }
+
+    /* hidden form for formspree (optional – but keep) */
+    .hidden-form {
+      display: none;
+    }
+
+    @media (max-width: 600px) {
+      .click-text { font-size: 3.5rem; }
+      h1 { font-size: 3rem; }
+      .valentine-greeting { font-size: 1.6rem; }
+      .heart-letter p { font-size: 1.2rem; }
+      .photo-frame { width: 200px; height: 200px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- CLICK ME overlay – she has to click to reveal everything -->
+  <div class="click-reveal" id="clickOverlay">
+    <div class="click-text">click me <i class="fas fa-heart" style="color: #ff4d6d;"></i></div>
+    <div class="click-sub">for Tess 💕</div>
+  </div>
+
+  <!-- MAIN VALENTINE CONTENT (hidden until click) -->
+  <div class="valentine-content" id="valentineContent">
+    <!-- photo of tess (replace with her actual image) -->
+    <div class="photo-frame">
+      <div class="photo-inner">
+        <!-- 🔴 REPLACE WITH TESS'S PHOTO -->
+        <img src="tess1.jpeg" alt="Tess" id="tessPhoto">
+      </div>
+    </div>
+
+    <h1>My Love, Tess</h1>
+    <div class="valentine-greeting">
+      <i class="fas fa-heart"></i> Happy Valentine's Day baby<i class="fas fa-heart"></i>
+    </div>
+
+    <!-- the real message: fights, but love wins -->
+    <div class="heart-letter">
+      <p>
+        <i class="fas fa-quote-left"></i> 
+        I know we fight. Sometimes it feels like the world is too small for both our storms. 
+        But even on the loudest days, my heart never doubts you. You are the one I want to fight with, 
+        and the only one I want to make up with. Every argument fades, but what stays is you – your laugh, 
+        your stubbornness, the way you look at me when you're trying not to smile.
+        <br><br>
+        We clash because we care. And I wouldn't trade our fire for anything. You mean everything to me, 
+        Tess – even when words come out wrong, my love for you never does.
+        <i class="fas fa-quote-right"></i>
+      </p>
+      <div class="signature">yours, always 💖</div>
+    </div>
+
+    <!-- just one button – yes (and it sends email) -->
+    <div class="button-group">
+      <button class="btn btn-yes" id="yesBtn"><i class="fas fa-check-circle"></i> Yes, I'm yours</button>
+    </div>
+
+    <!-- hidden message after clicking yes (extra love) -->
+    <div class="hidden-message" id="loveReply">
+      ❤❤❤ I love you, Baby. Through every fight, through every day – you're my Valentine.❤❤❤
+    </div>
+
+    <div class="footer-note">
+      <i class="fas fa-map-marker-alt"></i> no matter the distance, always close in my heart
+    </div>
+  </div>
+
+  <!-- hidden form for Formspree – replace with your ID -->
+  <form class="hidden-form" id="valentineForm" action="https://formspree.io/f/xwvnlzje" method="POST">
+    <input type="text" name="valentine_response" id="responseField" value="Yes, I'll be your Valentine!">
+    <input type="hidden" name="to_tess" value="Tess's Valentine Reply">
+  </form>
+
+  <script>
+    (function() {
+      // ----------------------------------------------------
+      // 🔴 REPLACE WITH YOUR ACTUAL FORMSPREE ID (e.g., "xjvnoqwe")
+      const FORMSPREE_ID = "xwvnlzje";   // <-- PASTE YOUR ID
+      // ----------------------------------------------------
+
+      const overlay = document.getElementById('clickOverlay');
+      const content = document.getElementById('valentineContent');
+      const yesBtn = document.getElementById('yesBtn');
+      const loveReply = document.getElementById('loveReply');
+      const tessPhoto = document.getElementById('tessPhoto');
+      const form = document.getElementById('valentineForm');
+      const responseField = document.getElementById('responseField');
+
+      // set correct form action
+      if (FORMSPREE_ID && FORMSPREE_ID !== "xwvnlzje") {
+        form.action = `https://formspree.io/f/${FORMSPREE_ID}`;
+      } else {
+        console.warn("Please set your Formspree ID");
+      }
+
+      // CLICK OVERLAY – reveals everything with beautiful fade
+      overlay.addEventListener('click', function() {
+        overlay.classList.add('hidden');
+        content.classList.add('revealed');
+        // small animation on photo after reveal
+        tessPhoto.style.transform = 'scale(1.05)';
+        setTimeout(() => tessPhoto.style.transform = 'scale(1.02)', 300);
+      });
+
+      // function to send "yes" via formspree
+      function sendYesResponse() {
+        if (!form.action.includes('YOUR_FORMSPREE_ID')) {
+          responseField.value = "Yes, I'll be your Valentine! 💖";
+          fetch(form.action, {
+            method: 'POST',
+            body: new FormData(form),
+            headers: { 'Accept': 'application/json' }
+          }).then(r => {
+            if (r.ok) console.log('❤️ response sent');
+            else console.warn('formspree issue');
+          }).catch(e => console.error(e));
+        } else {
+          alert('(Demo mode: replace Formspree ID to actually send email)');
+        }
+      }
+
+      // YES button – shows message, sends email, heart burst
+      yesBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        sendYesResponse();
+
+        // show hidden message
+        loveReply.classList.add('show');
+
+        // playful photo
+        tessPhoto.style.transition = 'transform 0.5s';
+        tessPhoto.style.transform = 'scale(1.12) rotate(2deg)';
+        setTimeout(() => tessPhoto.style.transform = 'scale(1.02) rotate(0deg)', 500);
+
+        // heart burst
+        for (let i = 0; i < 10; i++) {
+          const burst = document.createElement('i');
+          burst.className = 'fas fa-heart';
+          burst.style.position = 'fixed';
+          burst.style.left = e.clientX + (Math.random()*80-40) + 'px';
+          burst.style.top = e.clientY + (Math.random()*80-40) + 'px';
+          burst.style.fontSize = Math.random()*30+20 + 'px';
+          burst.style.color = `hsl(${Math.random()*15 + 340}, 80%, 70%)`;
+          burst.style.pointerEvents = 'none';
+          burst.style.zIndex = 9999;
+          burst.style.transition = 'all 1.2s ease-out';
+          document.body.appendChild(burst);
+          setTimeout(() => { burst.style.opacity = '0'; burst.style.transform = 'translateY(-80px) scale(0.5)'; }, 20);
+          setTimeout(() => burst.remove(), 1300);
+        }
+      });
+
+      // double click on photo for extra love
+      tessPhoto.addEventListener('dblclick', function() {
+        alert('💕 I love you, Baby! 💕');
+      });
+
+      // preload: a few floating hearts in background (soft)
+      const bg = document.createElement('div');
+      bg.className = 'heart-bg';
+      bg.style.position = 'fixed';
+      bg.style.top = '0'; bg.style.left = '0';
+      bg.style.width = '100%'; bg.style.height = '100%';
+      bg.style.pointerEvents = 'none';
+      bg.style.zIndex = '0';
+      for (let i = 0; i < 14; i++) {
+        const heart = document.createElement('i');
+        heart.className = 'fas fa-heart';
+        heart.style.position = 'absolute';
+        heart.style.fontSize = Math.floor(Math.random() * 30 + 18) + 'px';
+        heart.style.left = Math.random() * 100 + '%';
+        heart.style.top = Math.random() * 100 + '%';
+        heart.style.animation = `float 12s ${Math.random()*5}s infinite ease-in-out`;
+        heart.style.color = `rgba(255, ${130 + Math.floor(Math.random()*50)}, 170, 0.15)`;
+        bg.appendChild(heart);
+      }
+      document.body.appendChild(bg);
+    })();
+  </script>
+
+  <!-- tiny style for floating hearts -->
+  <style>
+    .heart-bg i {
+      animation: float 10s infinite ease-in-out;
+    }
+    @keyframes float {
+      0% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-30px) rotate(6deg); }
+      100% { transform: translateY(0px) rotate(0deg); }
+    }
+  </style>
+</body>
+</html>
